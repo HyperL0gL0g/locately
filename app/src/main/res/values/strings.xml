@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">fire</string>
+    <string name="title_activity_mapactivity">Map</string>
+    <string name ="google_maps_key">AIzaSyCswQhwOjIGs-h_ek30JfLa0nYkpgDhPWA</string>
+</resources>

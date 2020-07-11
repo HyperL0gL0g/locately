@@ -53,6 +53,8 @@ public class newmapactivity extends FragmentActivity implements OnMapReadyCallba
        // getLoc();
        // onMapReady(mMap);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final String user= getIntent().getStringExtra("user-name");
+        Log.d("user",user);
         showprog.setVisibility(View.VISIBLE);
         db.collection("user-profiles").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -62,10 +64,10 @@ public class newmapactivity extends FragmentActivity implements OnMapReadyCallba
                             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                             for (DocumentSnapshot d : list) {
                                 data p = d.toObject(data.class);
-                                if(p!=null) {
+                                if(p!=null && p.getName().toString().equals(user)) {
                                     lat[0] = p.getLat();
                                     lng[0] = p.getLng();
-                                    onMapReady(mMap);
+
                                     break;
                                 }
                                     showprog.setVisibility(View.GONE);
@@ -94,7 +96,7 @@ public class newmapactivity extends FragmentActivity implements OnMapReadyCallba
 
 
 
-   /*  neeraj code
+   /*  neerak code
    public void getLoc() {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

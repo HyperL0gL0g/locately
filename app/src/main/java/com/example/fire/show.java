@@ -62,20 +62,21 @@ db=FirebaseFirestore.getInstance();
                                     for (DocumentSnapshot d : list) {
                                         data p = d.toObject(data.class);
 
-
+                                        if(p!=null && p.getName().toString().equals(user)) {
                                             String addr = p.getAddress();
-                                        double latitude=p.getLat();
-                                            double longitude=p.getLng();
+                                            double latitude = p.getLat();
+                                            double longitude = p.getLng();
                                             String phone = p.getPhone();
                                             String name = p.getName();
-                                                show_name.setText("name= "+name);
-                                                show_addr.setText("address= " +addr);
-                                                show_phone.setText("number= " +phone);
-                                                show_lat.setText("lat="+latitude);
-                                                show_lng.setText(("lng="+longitude));
-                                                showprog.setVisibility(View.GONE);
-                                                Toast.makeText(show.this,"fetched data from firestore",Toast.LENGTH_LONG).show();
-
+                                            show_name.setText("name= " + name);
+                                            show_addr.setText("address= " + addr);
+                                            show_phone.setText("number= " + phone);
+                                            show_lat.setText("lat=" + latitude);
+                                            show_lng.setText(("lng=" + longitude));
+                                            showprog.setVisibility(View.GONE);
+                                            Toast.makeText(show.this, "fetched data from firestore", Toast.LENGTH_LONG).show();
+                                            break;
+                                        }
 
                                     }
                                 }

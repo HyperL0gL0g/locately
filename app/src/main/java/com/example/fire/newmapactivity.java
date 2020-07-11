@@ -94,7 +94,8 @@ public class newmapactivity extends FragmentActivity implements OnMapReadyCallba
 
 
 
-   /* public void getLoc() {
+   /*  neeraj code
+   public void getLoc() {
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;

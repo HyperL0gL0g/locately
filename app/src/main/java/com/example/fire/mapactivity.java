@@ -26,8 +26,8 @@ import java.util.List;
 public class mapactivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    double lat =22.618771;
-     double lng = 88.4381169;
+    double lat =0.0;
+     double lng = 0.0;
     FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -33,6 +33,9 @@ private ProgressBar showprog;
          final TextView show_name = (TextView) findViewById(R.id.show_name);
         final TextView show_addr = (TextView) findViewById(R.id.show_addr);
          final TextView show_phone = (TextView) findViewById(R.id.show_phone);
+        final TextView show_lat = (TextView) findViewById(R.id.latitude);
+
+        final TextView show_lng = (TextView) findViewById(R.id.longitude);
          final Button show,gotomap,gotomap2;
         show = (Button)findViewById(R.id.s);
         gotomap=(Button)findViewById(R.id.gotomap);
@@ -58,17 +61,18 @@ db=FirebaseFirestore.getInstance();
                                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                                     for (DocumentSnapshot d : list) {
                                         data p = d.toObject(data.class);
+                                        if(p.getName().toString().equals(user)){
 
-
-                                        assert p != null;
-                                        String addr = p.getAddress();
-
+                                            String addr = p.getAddress();
+                                        double latitude=p.getLat();
+                                            double longitude=p.getLng();
                                             String phone = p.getPhone();
                                             String name = p.getName();
-                                            if(name.equals(user)) {
                                                 show_name.setText("name= "+name);
                                                 show_addr.setText("address= " +addr);
                                                 show_phone.setText("number= " +phone);
+                                                show_lat.setText("lat="+latitude);
+                                                show_lng.setText(("lng="+longitude));
                                                 showprog.setVisibility(View.GONE);
                                                 Toast.makeText(show.this,"fetched data from firestore",Toast.LENGTH_LONG).show();
                                             }

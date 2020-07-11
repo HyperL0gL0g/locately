@@ -7,6 +7,17 @@
     tools:context=".show">
 
     <TextView
+        android:id="@+id/latitude"
+        android:layout_width="313dp"
+        android:layout_height="64dp"
+        android:text="latitude"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.68" />
+
+    <TextView
         android:id="@+id/banner"
         android:layout_width="385dp"
         android:layout_height="90dp"
@@ -60,14 +71,15 @@
 
     <Button
         android:id="@+id/s"
-        android:layout_width="179dp"
-        android:layout_height="85dp"
+        android:layout_width="90dp"
+        android:layout_height="57dp"
         android:text="show"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.721"
+        app:layout_constraintVertical_bias="0.962"
         tools:ignore="HardcodedText" />
 
     <Button
@@ -77,10 +89,10 @@
         android:text="map"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/s"
-        app:layout_constraintVertical_bias="0.159" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.962" />
 
     <Button
         android:id="@+id/gotomap2"
@@ -89,8 +101,10 @@
         android:text="map2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gotomap" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
 
     <ProgressBar
         android:id="@+id/showprogress"
@@ -104,4 +118,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.377" />
+
+    <TextView
+
+        android:id="@+id/longitude"
+        android:layout_width="313dp"
+        android:layout_height="64dp"
+        android:text="longitude"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.814" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,13 +40,13 @@ private ProgressBar showprog;
         show = (Button)findViewById(R.id.s);
         gotomap=(Button)findViewById(R.id.gotomap);
         gotomap2=(Button)findViewById(R.id.gotomap2);
-        Log.d("tag","here");
+
 
         final String user= getIntent().getStringExtra("name");
         if(user==null)
             Log.d("null string","null");
 
-        Log.d("not pressed",user);
+        Log.d("user from intent",user);
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +61,7 @@ db=FirebaseFirestore.getInstance();
                                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                                     for (DocumentSnapshot d : list) {
                                         data p = d.toObject(data.class);
-                                        if(p.getName().toString().equals(user)){
+
 
                                             String addr = p.getAddress();
                                         double latitude=p.getLat();
@@ -75,7 +75,7 @@ db=FirebaseFirestore.getInstance();
                                                 show_lng.setText(("lng="+longitude));
                                                 showprog.setVisibility(View.GONE);
                                                 Toast.makeText(show.this,"fetched data from firestore",Toast.LENGTH_LONG).show();
-                                            }
+
 
                                     }
                                 }

@@ -75,12 +75,10 @@ public class MainActivity extends AppCompatActivity {
 
                                 Intent i = new Intent(MainActivity.this,show.class);
                                 i.putExtra("name",user_name);
-
-                                Intent j= new Intent(MainActivity.this,mapactivity.class);
-                                j.putSExtra("user-name",user_name);
-                                startActivity(j);
-
                                 startActivity(i);
+
+
+
                                 progbar.setVisibility(View.GONE);
 
                                // startActivity(new Intent(getApplicationContext(),show.class));

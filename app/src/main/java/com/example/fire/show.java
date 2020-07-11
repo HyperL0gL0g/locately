@@ -23,6 +23,7 @@ import java.util.List;
 public class show extends AppCompatActivity {
 private FirebaseFirestore db;
 private ProgressBar showprog;
+private String sendtomap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ private ProgressBar showprog;
         gotomap=(Button)findViewById(R.id.gotomap);
         gotomap2=(Button)findViewById(R.id.gotomap2);
 
-
+ sendtomap="";
         final String user= getIntent().getStringExtra("name");
         if(user==null)
             Log.d("null string","null");
@@ -62,19 +63,20 @@ db=FirebaseFirestore.getInstance();
                                     for (DocumentSnapshot d : list) {
                                         data p = d.toObject(data.class);
 
-                                        if(p!=null && p.getName().toString().equals(user)) {
+                                        if(p!=null && p.getName().equals(user)) {
                                             String addr = p.getAddress();
                                             double latitude = p.getLat();
                                             double longitude = p.getLng();
                                             String phone = p.getPhone();
                                             String name = p.getName();
+                                            sendtomap=name;
                                             show_name.setText("name= " + name);
                                             show_addr.setText("address= " + addr);
                                             show_phone.setText("number= " + phone);
                                             show_lat.setText("lat=" + latitude);
                                             show_lng.setText(("lng=" + longitude));
                                             showprog.setVisibility(View.GONE);
-                                            Toast.makeText(show.this, "fetched data from firestore", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(show.this, "fetched data from firestore", Toast.LENGTH_SHORT).show();
                                             break;
                                         }
 
@@ -99,7 +101,11 @@ db=FirebaseFirestore.getInstance();
    gotomap.setOnClickListener(new View.OnClickListener() {
        @Override
        public void onClick(View v) {
-           startActivity(new Intent(show.this,mapactivity.class));
+           Intent j= new Intent(show.this,mapactivity.class);
+           j.putExtra("user-name",sendtomap);
+           startActivity(j);
+
+
 
        }
    });

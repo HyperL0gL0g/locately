@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText name,address,phone;
     private FirebaseFirestore db;
     private ProgressBar progbar;
-    final double[] lat ={0,0};
-    final double[] lng = {0.0};
+    double lat =0.0;
+    private double lng = 0.0;
     //adding
     private FusedLocationProviderClient fusedLocationClient2;
     Location curr_loc2;
@@ -57,25 +57,28 @@ public class MainActivity extends AppCompatActivity {
                 final String user_name=name.getText().toString().trim();
                 String user_mobile=phone.getText().toString().trim();
                 String user_addr=address.getText().toString().trim();
-                double latitude=lat[0];
-                double longitude=lng[0];
+                double latitude=lat;
+                double longitude=lng;
 
 
 
                 progbar.setVisibility(View.VISIBLE);
                 CollectionReference profile =db.collection("user-profiles");
-                data obj =  new data(user_name,user_addr,user_mobile,lat[0],lng[0]);
+                data obj =  new data(user_name,user_addr,user_mobile,latitude,longitude);
 
                 profile.add(obj)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
                                 Toast.makeText(MainActivity.this,"Success",Toast.LENGTH_LONG).show ();
-                                Log.d("err","reached");
+                              //  Log.d("err","reached");
+
                                 Intent i = new Intent(MainActivity.this,show.class);
                                 i.putExtra("name",user_name);
-                                Intent j= new Intent(MainActivity.this,newmapactivity.class);
-                                j.putExtra("user-name",user_name);
+
+                                Intent j= new Intent(MainActivity.this,mapactivity.class);
+                                j.putSExtra("user-name",user_name);
+                                startActivity(j);
 
                                 startActivity(i);
                                 progbar.setVisibility(View.GONE);
@@ -111,8 +114,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Location location) {
                 if(location!=null){
-                    lat[0] =Double.parseDouble(String.valueOf(location.getLatitude()));
-                    lng[0] =Double.parseDouble(String.valueOf(location.getLongitude ()));
+                    lat =Double.parseDouble(String.valueOf(location.getLatitude()));
+                    lng =Double.parseDouble(String.valueOf(location.getLongitude ()));
                     Log.d("test123",location.getLatitude()+"\t"+location.getLongitude());
                     curr_loc2 = location;
 

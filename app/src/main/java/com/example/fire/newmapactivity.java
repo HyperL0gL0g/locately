@@ -38,7 +38,7 @@ import java.util.Map;
 public class newmapactivity extends FragmentActivity implements OnMapReadyCallback {
     Location curr_loc;
     private ProgressBar showprog;
-    final double[] lat ={0,0};
+    final double[] lat ={0.0};
     final double[] lng = {0.0};
    private GoogleMap mMap;
 
@@ -67,10 +67,10 @@ public class newmapactivity extends FragmentActivity implements OnMapReadyCallba
                                 if(p!=null && p.getName().toString().equals(user)) {
                                     lat[0] = p.getLat();
                                     lng[0] = p.getLng();
-
+                                    showprog.setVisibility(View.GONE);
                                     break;
                                 }
-                                    showprog.setVisibility(View.GONE);
+
                                     Toast.makeText(newmapactivity.this,"fetched data from firestore",Toast.LENGTH_LONG).show();
 
                                 }
@@ -121,6 +121,7 @@ public class newmapactivity extends FragmentActivity implements OnMapReadyCallba
     @Override
     public void onMapReady(GoogleMap googleMap) {
         LatLng sydney = new LatLng(lat[0],lng[0]);
+
         googleMap.addMarker(new MarkerOptions().position(sydney).title("you are here"));
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         Log.d("here", "reached here");

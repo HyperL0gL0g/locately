@@ -26,8 +26,8 @@ import java.util.List;
 public class mapactivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    double lat =0.0;
-     double lng = 0.0;
+    double lat ;
+    double lng ;
     FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
        db =  FirebaseFirestore.getInstance();
          final String user= getIntent().getExtras().getString("user-name");
 
-        Log.d("current user",user);
+        Log.d("current ",user);
         db.collection("user-profiles").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -57,10 +57,19 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
                             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                             for (DocumentSnapshot d : list) {
                                 data p = d.toObject(data.class);
-
-                                if(p!=null && p.getName().equals(user)) {
+                                String curr=p.getName();
+                                Log.d("curr",p.getName());
+                                if(p!=null && curr.equals(user)) {
+                                    Log.d("userfound","true");
                                     lat = p.getLat();
                                     lng = p.getLng();
+                                    Log.d("newlat", String.valueOf(lat));
+                                    Log.d("newlng", String.valueOf(lng));
+                                    LatLng sydney = new LatLng(lat,lng);
+                                    Toast.makeText(mapactivity.this,"lat= "+String.valueOf(lat)+" "+"lng= "+String.valueOf(lng),Toast.LENGTH_LONG).show();
+
+                                    mMap.addMarker(new MarkerOptions().position(sydney).title("You are Here"));
+                                    mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
                                   //  showprog.setVisibility(View.GONE);
                                     break;
                                 }
@@ -82,14 +91,10 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
         });
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(lat,lng);
-        Toast.makeText(mapactivity.this,"lat= "+String.valueOf(lat)+" "+"lng= "+String.valueOf(lng),Toast.LENGTH_LONG).show();
-       // Log.d("latitude", String.valueOf(lat));
-        //Log.d("longitude", String.valueOf(lng));
+       // LatLng sydney = new LatLng(lat,lng);
+        //Toast.makeText(mapactivity.this,"lat= "+String.valueOf(lat)+" "+"lng= "+String.valueOf(lng),Toast.LENGTH_LONG).show();
 
-       // Toast.makeText(mapactivity.this, String.valueOf(lat),Toast.LENGTH_LONG).show();
-       // Toast.makeText(mapactivity.this, (int) lng[0],Toast.LENGTH_LONG).show();
-        mMap.addMarker(new MarkerOptions().position(sydney).title("You are Here"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+      //  mMap.addMarker(new MarkerOptions().position(sydney).title("You are Here"));
+       // mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }

@@ -42,7 +42,7 @@ private String sendtomap;
         gotomap=(Button)findViewById(R.id.gotomap);
         gotomap2=(Button)findViewById(R.id.gotomap2);
 
- sendtomap="";
+
         final String user= getIntent().getStringExtra("name");
         if(user==null)
             Log.d("null string","null");
@@ -101,6 +101,7 @@ db=FirebaseFirestore.getInstance();
    gotomap.setOnClickListener(new View.OnClickListener() {
        @Override
        public void onClick(View v) {
+           Log.d("sent to map",sendtomap);
            Intent j= new Intent(show.this,mapactivity.class);
            j.putExtra("user-name",sendtomap);
            startActivity(j);

@@ -24,6 +24,7 @@ public class show extends AppCompatActivity {
 private FirebaseFirestore db;
 private ProgressBar showprog;
 private String sendtomap;
+    static final String tag="show";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,14 +46,14 @@ private String sendtomap;
 
         final String user= getIntent().getStringExtra("name");
         if(user==null)
-            Log.d("null string","null");
+            Log.d(tag,"null");
 
-        Log.d("user from intent",user);
+        Log.d(tag,user);
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showprog.setVisibility(View.VISIBLE);
-                Log.d("inside","reached");
+                Log.d(tag,"reached");
 db=FirebaseFirestore.getInstance();
                 db.collection("user-profiles").get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -76,6 +77,7 @@ db=FirebaseFirestore.getInstance();
                                             show_lat.setText("lat=" + latitude);
                                             show_lng.setText(("lng=" + longitude));
                                             showprog.setVisibility(View.GONE);
+                                            Log.d(tag,"data showed");
                                             Toast.makeText(show.this, "fetched data from firestore", Toast.LENGTH_SHORT).show();
                                             break;
                                         }
@@ -87,7 +89,7 @@ db=FirebaseFirestore.getInstance();
         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(show.this,"error occured",Toast.LENGTH_LONG).show();
+                        Toast.makeText(show.this,"error occured",Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -101,7 +103,7 @@ db=FirebaseFirestore.getInstance();
    gotomap.setOnClickListener(new View.OnClickListener() {
        @Override
        public void onClick(View v) {
-           Log.d("sent to map",sendtomap);
+      Log.d(tag,sendtomap);
            Intent j= new Intent(show.this,mapactivity.class);
            j.putExtra("user-name",sendtomap);
            startActivity(j);

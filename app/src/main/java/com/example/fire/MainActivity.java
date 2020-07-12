@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText name,address,phone;
     private FirebaseFirestore db;
     private ProgressBar progbar;
+    static final String tag="main";
     double lat =0.0;
     private double lng = 0.0;
     //adding
@@ -70,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
-                                Toast.makeText(MainActivity.this,"Success",Toast.LENGTH_LONG).show ();
+                                Toast.makeText(MainActivity.this,"Success",Toast.LENGTH_SHORT).show();
                               //  Log.d("err","reached");
-
+                                        Log.d(tag,user_name);
                                 Intent i = new Intent(MainActivity.this,show.class);
                                 i.putExtra("name",user_name);
                                 startActivity(i);
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                         progbar.setVisibility(View.VISIBLE);
 
                     }
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 if(location!=null){
                     lat =Double.parseDouble(String.valueOf(location.getLatitude()));
                     lng =Double.parseDouble(String.valueOf(location.getLongitude ()));
-                    Log.d("test123",location.getLatitude()+"\t"+location.getLongitude());
+                   // Log.d("test123",location.getLatitude()+"\t"+location.getLongitude());
                     curr_loc2 = location;
 
                 }

@@ -103,10 +103,10 @@ db=FirebaseFirestore.getInstance();
    gotomap.setOnClickListener(new View.OnClickListener() {
        @Override
        public void onClick(View v) {
-      Log.d(tag,sendtomap);
-           Intent j= new Intent(show.this,mapactivity.class);
-           j.putExtra("user-name",sendtomap);
-           startActivity(j);
+         Log.d(tag,sendtomap);
+         Intent j= new Intent(show.this,mapactivity.class);
+         j.putExtra("user-name",sendtomap);
+         startActivity(j);
 
 
 
@@ -116,7 +116,8 @@ db=FirebaseFirestore.getInstance();
    gotomap2.setOnClickListener(new View.OnClickListener() {
        @Override
        public void onClick(View v) {
-           startActivity(new Intent(show.this,newmapactivity.class));
+           // deprecated for now
+//           startActivity(new Intent(show.this,newmapactivity.class));
 
        }
    });

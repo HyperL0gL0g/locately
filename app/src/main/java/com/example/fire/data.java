@@ -4,7 +4,8 @@ public class data {
 
     private  String name,address,phone;
     private double lat,lng;
-public data(){}
+
+    public data(){}
 
     public data(String name, String address, String phone,double lat,double lng) {
         this.name = name;
@@ -12,6 +13,11 @@ public data(){}
         this.phone = phone;
         this.lat=lat;
         this.lng=lng;
+    }
+
+    public data(double lat,double lng){
+        this.lat = lat;
+        this.lng = lng;
     }
 
     public String getName() {

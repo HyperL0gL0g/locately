@@ -28,21 +28,10 @@ public class dashboard extends AppCompatActivity {
         String username=u.getDisplayName();
         Log.d("username",username);
 
-
-
-
         user_mail.setText(name);
         dash.setText(username+"'s"+" DashBoard");
 
-
-
-
-
-
         signout.setOnClickListener(new View.OnClickListener() {
-
-
-
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
@@ -50,13 +39,11 @@ public class dashboard extends AppCompatActivity {
                 Intent i   = new Intent(getApplicationContext(),MainActivity.class);
                 finish();
                 startActivity(i);
-
             }
         });
         gotoadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startActivity(new Intent(getApplicationContext(),MainActivity.class));
             }
         });

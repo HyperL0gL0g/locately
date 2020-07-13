@@ -74,7 +74,6 @@ public class register extends AppCompatActivity {
                                             {
                                                 //new tryoutcode
                                                 FirebaseUser user = mAuth.getCurrentUser();
-
                                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                                         .setDisplayName(username).build();
 
@@ -87,19 +86,16 @@ public class register extends AppCompatActivity {
                                                     }
                                                 });
                                                 //TRYOUT CODE ENDS
-
                                                 Toast.makeText(register.this,"User registered",Toast.LENGTH_LONG).show();
                                                 progress.setVisibility(View.GONE);
-                                                Intent j  = new Intent(register.this,start.class);
+                                                Intent j  = new Intent(register.this,login.class);
+                                                j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 startActivity(j);
-
                                             }else
                                             {
                                                 Toast.makeText(register.this,"User not registered" , Toast.LENGTH_LONG).show();
                                                 progress.setVisibility(View.GONE);
                                             }
-
-
                                         }
                                     });
 
@@ -110,9 +106,6 @@ public class register extends AppCompatActivity {
                                 }
                             }
                         });
-
-
-
 
             }
         });

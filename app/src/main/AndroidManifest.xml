@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -37,7 +39,7 @@
             android:name=".mapactivity"
             android:label="@string/title_activity_mapactivity" />
         <activity android:name=".show" />
-        <activity android:name=".start">
+        <activity android:name=".login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,6 +47,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".register" />
+
+        <service
+            android:name=".background_locationScheduler"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>

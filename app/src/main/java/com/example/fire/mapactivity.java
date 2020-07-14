@@ -13,6 +13,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -25,7 +26,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.io.DataOutputStream;
 import java.util.List;
 
-public class mapactivity extends FragmentActivity implements OnMapReadyCallback , GoogleMap.OnMarkerClickListener {
+public class mapactivity extends FragmentActivity implements OnMapReadyCallback  {
 
     private GoogleMap mMap;
     double lat ;
@@ -65,7 +66,7 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
                                 data p = d.toObject(data.class);
                                 String curr=p.getName();
                                 Log.d("curr",p.getName());
-                                if(p!=null && curr.equals(user)) {
+                                if(p!=null ) {
                                     Log.d(tag,"true");
                                     lat = Double.parseDouble(p.getLat());
                                     lng = Double.parseDouble(p.getLng());
@@ -73,18 +74,31 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
                                     Log.d(tag,sendtoprof);
                                     Log.d("newlat", String.valueOf(lat));
                                     Log.d("newlng", String.valueOf(lng));
-                                    LatLng user_location = new LatLng(lat,lng);
-                                    Toast.makeText(mapactivity.this,"lat= "+String.valueOf(lat)+" "+"lng= "+String.valueOf(lng),Toast.LENGTH_SHORT).show();
-                                    mMap.setOnMarkerClickListener(mapactivity.this);
-                                  myMarker =  mMap.addMarker(new MarkerOptions()
-                                          .position(user_location));
+                                    LatLng user_location;
+                                    if(curr.equals(user))
+                                    {
+                                       user_location=new LatLng(lat,lng);
+                                        myMarker =  mMap.addMarker(new MarkerOptions()
+                                                .position(user_location)
+                                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                                    }
+                                       else
+                                   // Toast.makeText(mapactivity.this,"lat= "+String.valueOf(lat)+" "+"lng= "+String.valueOf(lng),Toast.LENGTH_SHORT).show();
+                                  //  mMap.setOnMarkerClickListener(mapactivity.this);
+                                    {
+
+                                        user_location=new LatLng(lat,lng);
+                                        myMarker = mMap.addMarker(new MarkerOptions()
+                                                .position(user_location)
+                                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
 
 
-
+                                    }
                                     mMap.moveCamera(CameraUpdateFactory.newLatLng(user_location));
 
                                   //  showprog.setVisibility(View.GONE);
-                                    break;
+
+                                  //  break;
                                 }
 
                                // Toast.makeText(mapactivity.this,"fetched data from firestore",Toast.LENGTH_LONG).show();
@@ -111,7 +125,7 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
        // mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 
-    @Override
+   /* @Override
     public boolean onMarkerClick(Marker marker) {
         if(marker.equals(myMarker))
         {
@@ -124,4 +138,7 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
         }
         return false;
     }
+*/
 }
+
+

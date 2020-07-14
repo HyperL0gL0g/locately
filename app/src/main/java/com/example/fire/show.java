@@ -66,8 +66,8 @@ db=FirebaseFirestore.getInstance();
 
                                         if(p!=null && p.getName().equals(user)) {
                                             String addr = p.getAddress();
-                                            double latitude = p.getLat();
-                                            double longitude = p.getLng();
+                                            String latitude = p.getLat();
+                                            String longitude = p.getLng();
                                             String phone = p.getPhone();
                                             String name = p.getName();
                                             sendtomap=name;

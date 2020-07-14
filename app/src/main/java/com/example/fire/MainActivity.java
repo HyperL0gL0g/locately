@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar progbar;
     static final String tag="main";
     double lat =0.0;
-    private double lng = 0.0;
+    double lng =0.0;
 
     String login_uid = "";
     Location curr_loc2;
@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
                                        final String user_name = name.getText().toString().trim();
                                        String user_mobile = phone.getText().toString().trim();
                                        String user_addr = address.getText().toString().trim();
-                                       double latitude = lat;
-                                       double longitude = lng;
+                                       String latitude = String.valueOf(lat);
+                                       String longitude = String.valueOf(lng);
 
                                        progbar.setVisibility(View.VISIBLE);
                                        data obj = new data(user_name, user_addr, user_mobile, latitude, longitude);

@@ -35,99 +35,98 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
 import java.util.Map;
 
-public class newmapactivity extends FragmentActivity implements OnMapReadyCallback {
-    Location curr_loc;
-    private ProgressBar showprog;
-    final double[] lat ={0.0};
-    final double[] lng = {0.0};
-   private GoogleMap mMap;
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_newmapactivity);
-        FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        showprog=(ProgressBar)findViewById(R.id.showprogress);
-      //  mMap=(GoogleMap)findViewById(R.id.map);
-       // getLoc();
-       // onMapReady(mMap);
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final String user= getIntent().getStringExtra("user-name");
-        Log.d("user",user);
-        showprog.setVisibility(View.VISIBLE);
-        db.collection("user-profiles").get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        if (!queryDocumentSnapshots.isEmpty()) {
-                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                            for (DocumentSnapshot d : list) {
-                                data p = d.toObject(data.class);
-                                if(p!=null && p.getName().toString().equals(user)) {
-                                    lat[0] = p.getLat();
-                                    lng[0] = p.getLng();
-                                    showprog.setVisibility(View.GONE);
-                                    break;
-                                }
-
-                                    Toast.makeText(newmapactivity.this,"fetched data from firestore",Toast.LENGTH_LONG).show();
-
-                                }
-
-                            }
-                        }
-
-
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(newmapactivity.this,"error occured",Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-
-    }
-
-
-
-
-
-
-
-   /*  neerak code
-   public void getLoc() {
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        fusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                if(location!=null){
-                    Log.d("test123",location.getLatitude()+"\t"+location.getLongitude());
-                    curr_loc = location;
-                    SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-                    assert mapFragment != null;
-                    mapFragment.getMapAsync(newmapactivity.this);
-                }
-            }
-        });
-
-    }*/
-
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        LatLng sydney = new LatLng(lat[0],lng[0]);
-
-        googleMap.addMarker(new MarkerOptions().position(sydney).title("you are here"));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        Log.d("here", "reached here");
-
-    }
-
+public class newmapactivity {//extends FragmentActivity implements OnMapReadyCallback {
+//    Location curr_loc;
+//    private ProgressBar showprog;
+//    final double[] lat ={0.0};
+//    final double[] lng = {0.0};
+//   private GoogleMap mMap;
+//
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_newmapactivity);
+//        FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+//        showprog=(ProgressBar)findViewById(R.id.showprogress);
+//      //  mMap=(GoogleMap)findViewById(R.id.map);
+//       // getLoc();
+//       // onMapReady(mMap);
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        final String user= getIntent().getStringExtra("user-name");
+//        Log.d("user",user);
+//        showprog.setVisibility(View.VISIBLE);
+//        db.collection("user-profiles").get()
+//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                        if (!queryDocumentSnapshots.isEmpty()) {
+//                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+//                            for (DocumentSnapshot d : list) {
+//                                data p = d.toObject(data.class);
+//                                if(p!=null && p.getName().toString().equals(user)) {
+//                                    lat[0] = p.getLat();
+//                                    lng[0] = p.getLng();
+//                                    showprog.setVisibility(View.GONE);
+//                                    break;
+//                                }
+//
+//                                    Toast.makeText(newmapactivity.this,"fetched data from firestore",Toast.LENGTH_LONG).show();
+//
+//                                }
+//
+//                            }
+//                        }
+//
+//
+//                }).addOnFailureListener(new OnFailureListener() {
+//            @Override
+//            public void onFailure(@NonNull Exception e) {
+//                Toast.makeText(newmapactivity.this,"error occured",Toast.LENGTH_LONG).show();
+//
+//            }
+//        });
+//
+//
+//    }
+//
+//
+//
+//
+//
+//
+//
+//   /*  neerak code
+//   public void getLoc() {
+//
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            return;
+//        }
+//        fusedLocationClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+//            @Override
+//            public void onSuccess(Location location) {
+//                if(location!=null){
+//                    Log.d("test123",location.getLatitude()+"\t"+location.getLongitude());
+//                    curr_loc = location;
+//                    SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+//                    assert mapFragment != null;
+//                    mapFragment.getMapAsync(newmapactivity.this);
+//                }
+//            }
+//        });
+//
+//    }*/
+//
+//
+//    @Override
+//    public void onMapReady(GoogleMap googleMap) {
+//        LatLng sydney = new LatLng(lat[0],lng[0]);
+//
+//        googleMap.addMarker(new MarkerOptions().position(sydney).title("you are here"));
+//        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//        Log.d("here", "reached here");
+//
+//    }
 
 
 }

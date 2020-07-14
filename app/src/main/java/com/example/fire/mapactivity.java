@@ -67,8 +67,8 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
                                 Log.d("curr",p.getName());
                                 if(p!=null && curr.equals(user)) {
                                     Log.d(tag,"true");
-                                    lat = p.getLat();
-                                    lng = p.getLng();
+                                    lat = Double.parseDouble(p.getLat());
+                                    lng = Double.parseDouble(p.getLng());
                                     sendtoprof=curr;
                                     Log.d(tag,sendtoprof);
                                     Log.d("newlat", String.valueOf(lat));

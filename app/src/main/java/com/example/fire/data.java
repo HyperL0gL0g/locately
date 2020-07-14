@@ -2,12 +2,11 @@ package com.example.fire;
 
 public class data {
 
-    private  String name,address,phone;
-    private double lat,lng;
+    private  String name,address,phone,lat,lng;
 
     public data(){}
 
-    public data(String name, String address, String phone,double lat,double lng) {
+    public data(String name, String address, String phone,String lat,String lng) {
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -15,7 +14,7 @@ public class data {
         this.lng=lng;
     }
 
-    public data(double lat,double lng){
+    public data(String lat,String lng){
         this.lat = lat;
         this.lng = lng;
     }
@@ -33,10 +32,10 @@ public class data {
     }
 
 
-    public double getLat(){
+    public String getLat(){
     return lat;
     }
-    public double getLng(){
+    public String getLng(){
         return lng;
     }
 }

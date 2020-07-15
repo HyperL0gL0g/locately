@@ -183,6 +183,8 @@ public class MainActivity extends AppCompatActivity {
 
             } else {
                 Toast.makeText(this, "Location permssion not granted", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(),dashboard.class));
+                finish();
             }
         }
     }

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -61,6 +62,7 @@ public class register extends AppCompatActivity {
 
 
                 progress.setVisibility(View.VISIBLE);
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 mAuth.createUserWithEmailAndPassword(mail,pass)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
@@ -91,6 +93,7 @@ public class register extends AppCompatActivity {
                                                 //TRYOUT CODE ENDS
                                                 Toast.makeText(register.this,"User registered",Toast.LENGTH_LONG).show();
                                                 progress.setVisibility(View.GONE);
+                                                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                                                 Intent j  = new Intent(register.this,login.class);
                                                 j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 startActivity(j);
@@ -104,6 +107,7 @@ public class register extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         progress.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         if (e instanceof FirebaseAuthInvalidCredentialsException) {
                             Toast.makeText(register.this, "Invalid password", Toast.LENGTH_SHORT).show();
                         } else if (e instanceof FirebaseAuthInvalidUserException) {

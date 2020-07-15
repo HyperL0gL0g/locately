@@ -3,6 +3,7 @@ package com.example.fire;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -55,20 +56,23 @@ public class login extends AppCompatActivity {
                 String email_id=email.getText().toString().trim();
                 String password_id=password.getText().toString().trim();
                 login_progress.setVisibility(View.VISIBLE);
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 mauth.signInWithEmailAndPassword(email_id,password_id).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
+                            login_progress.setVisibility(View.GONE);
+                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                             Toast.makeText(getApplicationContext(),"logged in ",Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(),dashboard.class));
-                            login_progress.setVisibility(View.GONE);
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         login_progress.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         if (e instanceof FirebaseAuthInvalidCredentialsException) {
                             Toast.makeText(login.this, "Invalid password", Toast.LENGTH_SHORT).show();
                         } else if (e instanceof FirebaseAuthInvalidUserException) {

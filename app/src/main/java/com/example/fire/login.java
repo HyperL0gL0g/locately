@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.fire.drawer.mainView_Activity;
+import com.example.fire.drawer.test;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -44,7 +44,7 @@ public class login extends AppCompatActivity {
         findViewById(R.id.nav).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), mainView_Activity.class));
+                startActivity(new Intent(getApplicationContext(), test.class));
             }
         });
         register.setOnClickListener(new View.OnClickListener() {

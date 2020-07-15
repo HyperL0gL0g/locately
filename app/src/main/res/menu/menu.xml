@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Map"
+        android:id="@id/map2"
+        android:icon="@android:drawable/btn_minus"/>
+    <item android:title="something"
+        android:id="@id/something"
+        android:icon="@android:drawable/alert_dark_frame"/>
+</menu>

@@ -26,8 +26,6 @@ public class login extends AppCompatActivity {
     private ProgressBar login_progress;
     FirebaseAuth mauth;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +42,7 @@ public class login extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 startActivity(new Intent(getApplicationContext(),register.class));
-
             }
         });
 
@@ -66,6 +62,7 @@ public class login extends AppCompatActivity {
                             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                             Toast.makeText(getApplicationContext(),"logged in ",Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(),dashboard.class));
+                            finish();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -80,7 +77,6 @@ public class login extends AppCompatActivity {
                         } else {
                             Toast.makeText(login.this,"Dont know", Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 });
             }

@@ -94,9 +94,8 @@ public class register extends AppCompatActivity {
                                                 Toast.makeText(register.this,"User registered",Toast.LENGTH_LONG).show();
                                                 progress.setVisibility(View.GONE);
                                                 getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                                                Intent j  = new Intent(register.this,login.class);
-                                                j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                startActivity(j);
+                                                startActivity(new Intent(getApplicationContext(),login.class));
+                                                finish();
                                             }
                                         }
                                     });

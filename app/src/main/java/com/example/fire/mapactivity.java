@@ -3,10 +3,10 @@ package com.example.fire;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,13 +23,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.io.DataOutputStream;
 import java.util.List;
 
 public class mapactivity extends FragmentActivity implements OnMapReadyCallback  {
 
     private GoogleMap mMap;
     double lat ;
+    private Button refresh;
     double lng ;
     private Marker myMarker;
     FirebaseFirestore db;
@@ -53,7 +53,22 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
         mMap = googleMap;
        db =  FirebaseFirestore.getInstance();
          final String user= getIntent().getStringExtra("user-name");
+   //added refresh button
 
+    refresh=(Button)findViewById(R.id.refresh);
+         refresh.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            finish();
+            startActivity(getIntent());
+           /* finish();
+            overridePendingTransition(0, 0);
+            startActivity(getIntent());
+            overridePendingTransition(0, 0);
+
+            */
+        }
+    });
 
         Log.d(tag,user);
         db.collection("user-profiles").get()

@@ -14,9 +14,12 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.FirebaseDatabase;
@@ -91,21 +94,27 @@ public class register extends AppCompatActivity {
                                                 Intent j  = new Intent(register.this,login.class);
                                                 j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                                                 startActivity(j);
-                                            }else
-                                            {
-                                                Toast.makeText(register.this,"User not registered" , Toast.LENGTH_LONG).show();
-                                                progress.setVisibility(View.GONE);
                                             }
                                         }
                                     });
 
                                 }
-                                else {
-                                    Toast.makeText(register.this,"User not registered" , Toast.LENGTH_LONG).show();
-                                    progress.setVisibility(View.GONE);
-                                }
                             }
-                        });
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progress.setVisibility(View.GONE);
+                        if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                            Toast.makeText(register.this, "Invalid password", Toast.LENGTH_SHORT).show();
+                        } else if (e instanceof FirebaseAuthInvalidUserException) {
+
+                            String errorCode =
+                                    ((FirebaseAuthInvalidUserException) e).getErrorCode();
+
+                            Toast.makeText(register.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
             }
         });

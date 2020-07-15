@@ -12,9 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 
 public class login extends AppCompatActivity {
     private EditText email,password;
@@ -61,12 +64,18 @@ public class login extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(),dashboard.class));
                             login_progress.setVisibility(View.GONE);
                         }
-                        else
-                        {
-                            Toast.makeText(getApplicationContext(),"failed to login ",Toast.LENGTH_LONG).show();
-
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        login_progress.setVisibility(View.GONE);
+                        if (e instanceof FirebaseAuthInvalidCredentialsException) {
+                            Toast.makeText(login.this, "Invalid password", Toast.LENGTH_SHORT).show();
+                        } else if (e instanceof FirebaseAuthInvalidUserException) {
+                            Toast.makeText(login.this, "Incorrect email address", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(login.this,"Dont know", Toast.LENGTH_SHORT).show();
                         }
-
 
                     }
                 });

@@ -96,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
                 String longitude = String.valueOf(lng);
        login_uid=FirebaseAuth.getInstance().getUid();
                 progbar.setVisibility(View.VISIBLE);
-                data obj = new data(user_name, user_addr, user_mobile, latitude, longitude);
+                String online= "1";
+                data obj = new data(user_name, user_addr, user_mobile, latitude, longitude,online);
                 db.collection("user-profiles").document(login_uid).set(obj).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

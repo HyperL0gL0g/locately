@@ -2,21 +2,32 @@ package com.example.fire;
 
 public class data {
 
-    private  String name,address,phone,lat,lng;
+    private  String name,address,phone,lat,lng,online;
 
     public data(){}
 
-    public data(String name, String address, String phone,String lat,String lng) {
+    public data(String name, String address, String phone,String lat,String lng,String online) {
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.lat=lat;
         this.lng=lng;
+        this.online=online;
     }
 
     public data(String lat,String lng){
         this.lat = lat;
         this.lng = lng;
+
+    }
+    public data (String online)
+    {
+        this.online=online;
+    }
+
+
+    public String getOnline() {
+        return online;
     }
 
     public String getName() {

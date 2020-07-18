@@ -67,10 +67,10 @@ public class MainActivity extends AppCompatActivity {
         phone = (EditText) findViewById(R.id.phone);
         Button add = (Button) findViewById(R.id.ADD);
 
-        login_uid = FirebaseAuth.getInstance().getUid();
+       // login_uid = FirebaseAuth.getInstance().getUid();
 
         check_locationPerm();
-        //getLocation();
+        getLocation();
 
         // jobscheduler code
         ComponentName jobServiceComponent = new ComponentName(getApplicationContext(), background_locationScheduler.class);
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 String user_addr = address.getText().toString().trim();
                 String latitude = String.valueOf(lat);
                 String longitude = String.valueOf(lng);
-
+       login_uid=FirebaseAuth.getInstance().getUid();
                 progbar.setVisibility(View.VISIBLE);
                 data obj = new data(user_name, user_addr, user_mobile, latitude, longitude);
                 db.collection("user-profiles").document(login_uid).set(obj).addOnSuccessListener(new OnSuccessListener<Void>() {

@@ -43,7 +43,7 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapactivity);
-
+       // refresh = (Button) findViewById(R.id.refresh);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -77,15 +77,9 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-
-                startActivity(getIntent());
-           /* finish();
-            overridePendingTransition(0, 0);
-            startActivity(getIntent());
-            overridePendingTransition(0, 0);
-
-            */
+              //  finish();
+        onResume();
+              //  startActivity(getIntent());
             }
         });
 
@@ -115,8 +109,7 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
                                                 .position(user_location)
                                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
                                     } else
-                                    // Toast.makeText(mapactivity.this,"lat= "+String.valueOf(lat)+" "+"lng= "+String.valueOf(lng),Toast.LENGTH_SHORT).show();
-                                    //  mMap.setOnMarkerClickListener(mapactivity.this);
+
                                     {
 
                                         user_location = new LatLng(lat, lng);
@@ -128,12 +121,10 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
                                     }
                                     mMap.moveCamera(CameraUpdateFactory.newLatLng(user_location));
 
-                                    //  showprog.setVisibility(View.GONE);
 
-                                    //  break;
                                 }
 
-                                // Toast.makeText(mapactivity.this,"fetched data from firestore",Toast.LENGTH_LONG).show();
+
 
                             }
 
@@ -150,24 +141,16 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
         });
     }
 
-
+//onresume
         @Override
         public void onResume() {
             super.onResume();
-
+            Log.i(tag, "resume");
             db = FirebaseFirestore.getInstance();
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             uid = user.getUid();
             DocumentReference doc = db.collection("user-profiles").document(uid);
             doc.update("online","1");
-            Log.i(tag, "resume");
-           // setUpMapIfNeeded();
-
-         //   db = FirebaseFirestore.getInstance();
-           // DocumentReference doc = db.collection("user-profiles").document(uid);
-
-
-          //  doc.update("online", "1");
 
 
             db.collection("user-profiles").get()
@@ -214,56 +197,43 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
 
                 ;
             });
-
-
         }
 
+
+        //onpause
         @Override
         public void onPause() {
             super.onPause();
+            Log.i(tag, "onpause");
             db = FirebaseFirestore.getInstance();
 
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             uid = user.getUid();
             DocumentReference doc = db.collection("user-profiles").document(uid);
             doc.update("online","0");
-            Log.i(tag, "onpause");
-           // data n = new data("0");
-           // db.collection("user-profiles").document(uid).set(n);
-
-
         }
-
+        //onstop
         @Override
         public void onStop() {
             super.onStop();
             db = FirebaseFirestore.getInstance();
             Log.i(tag, "onstop");
-           // Log.i(tag,email1);
-       /* DocumentReference doc = db.collection("user-profiles").document("users");
-        doc.update("email", email1);
-        doc.update("online",on)
-                .addOnSuccessListener(new OnSuccessListener < Void > () {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Log.i(tag, "Updated Successfully");
-            }
-        });*/
+
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             uid = user.getUid();
             DocumentReference doc = db.collection("user-profiles").document(uid);
             doc.update("online","0");
         }
 
-
+        //ondestroy
         @Override
         public void onDestroy() {
             super.onDestroy();
             db = FirebaseFirestore.getInstance();
             setUpMapIfNeeded();
             Log.i(tag, "ondestroy");
-            data n = new data("0");
-            db.collection("user-profiles").document(uid).set(n);
+            DocumentReference doc = db.collection("user-profiles").document(uid);
+            doc.update("online","0");
 
         }
     }

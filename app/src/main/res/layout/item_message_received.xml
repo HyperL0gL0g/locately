@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="60dp"
+        android:clipToPadding="false"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_message_body"
+            android:background="@drawable/rounded_rectangle_green"
+            android:padding="10dp"
+            android:elevation="2dp"
+            android:textSize="18dp"
+            android:text="How are you doing? This is a long message that should probably wrap."
+            />
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:id="@+id/text_message_time"
+            android:text="11:40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:layout_alignBottom="@+id/text_message_body"
+            android:layout_toRightOf="@+id/text_message_body"
+            app:layout_constraintBottom_toBottomOf="@+id/text_message_body"
+            app:layout_constraintRight_toLeftOf="@+id/text_message_body" />
+
+    </RelativeLayout>
+</LinearLayout>

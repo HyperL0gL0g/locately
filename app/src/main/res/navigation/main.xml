@@ -13,6 +13,6 @@
     <fragment
         android:id="@+id/something"
         android:name="com.example.fire.drawer.something"
-        android:label="Something"
+        android:label="Chat"
         tools:layout="@layout/fragment_something" />
 </navigation>

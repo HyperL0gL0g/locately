@@ -3,8 +3,8 @@
 
     <item android:title="Map"
         android:id="@id/map2"
-        android:icon="@android:drawable/btn_minus"/>
-    <item android:title="something"
+        android:icon="@drawable/pin_selector"/>
+    <item android:title="Chat"
         android:id="@id/something"
-        android:icon="@android:drawable/alert_dark_frame"/>
+        android:icon="@drawable/chat_selector"/>
 </menu>

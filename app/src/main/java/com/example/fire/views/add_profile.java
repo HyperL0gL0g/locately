@@ -21,13 +21,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.fire.MainActivity;
 import com.example.fire.R;
 import com.example.fire.dashboard;
 import com.example.fire.data;
 import com.example.fire.drawer.mainDashboard;
-import com.example.fire.drawer.mainViewActivity;
-import com.example.fire.show;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

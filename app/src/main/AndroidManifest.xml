@@ -22,13 +22,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".drawer.mappedu_Activity"
-            android:label="@string/title_activity_mappedu_" />
-        <activity
-            android:name=".drawer.mainViewActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity android:name=".profile" />
         <activity android:name=".dashboard" />
         <activity android:name=".MainActivity" />

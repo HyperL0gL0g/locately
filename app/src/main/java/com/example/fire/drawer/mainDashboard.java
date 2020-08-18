@@ -19,7 +19,7 @@ import com.example.fire.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-public class test extends AppCompatActivity {
+public class mainDashboard extends AppCompatActivity {
 
 
     DrawerLayout drawerLayout;

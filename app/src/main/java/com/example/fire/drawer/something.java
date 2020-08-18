@@ -115,7 +115,6 @@ public class something extends Fragment {
                     adapter = new chatListAdapter(getContext(), mdata);
                     adapter.notifyDataSetChanged();
                     recyclerView.setAdapter(adapter);
-
                 }
 
                 Log.d("adadadad", String.valueOf(dataSnapshot.getValue()));

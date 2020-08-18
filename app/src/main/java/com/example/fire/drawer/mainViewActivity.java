@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.fire.R;
 
-public class mainView_Activity extends AppCompatActivity {
+public class mainViewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

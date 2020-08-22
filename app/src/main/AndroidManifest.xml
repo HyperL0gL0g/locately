@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.add_profile"></activity>
+        <activity android:name=".marker2profile"></activity>
+        <activity android:name=".views.add_profile" />
         <activity android:name=".drawer.chatActivity" />
         <activity android:name=".drawer.mainDashboard" />
 

@@ -3,6 +3,7 @@ package com.example.fire;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,11 +27,13 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.HashMap;
 import java.util.List;
 
-public class mapactivity extends FragmentActivity implements OnMapReadyCallback {
+public class mapactivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private GoogleMap mMap;
+    private HashMap<Marker,String> markermap;
     double lat;
     private Button refresh;
     double lng;
@@ -44,18 +47,19 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mapactivity);
        // refresh = (Button) findViewById(R.id.refresh);
-
+        mMap.setOnMarkerClickListener(this);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
+        markermap = new HashMap<>();
     }
     private void setUpMapIfNeeded() {
-
+        mMap.setOnMarkerClickListener(this);
         if (mMap == null) {
-
+            mMap.setOnMarkerClickListener(this);
             Log.d("MyMap", "setUpMapIfNeeded");
             ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
                     .getMapAsync(this);
@@ -69,6 +73,7 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         db = FirebaseFirestore.getInstance();
+        mMap.setOnMarkerClickListener(this);
 
         final String user = getIntent().getStringExtra("user-name");
         //added refresh button
@@ -103,11 +108,14 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
                                     Log.d("newlat", String.valueOf(lat));
                                     Log.d("newlng", String.valueOf(lng));
                                     LatLng user_location;
+
                                     if (curr.equals(user)) {
                                         user_location = new LatLng(lat, lng);
                                         myMarker = mMap.addMarker(new MarkerOptions()
                                                 .position(user_location)
                                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                                            markermap.put(myMarker,user);
+
                                     } else
 
                                     {
@@ -116,7 +124,7 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
                                         myMarker = mMap.addMarker(new MarkerOptions()
                                                 .position(user_location)
                                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-
+                                        markermap.put(myMarker,user);
 
                                     }
                                     mMap.moveCamera(CameraUpdateFactory.newLatLng(user_location));
@@ -140,11 +148,27 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
             }
         });
     }
+    //onclick
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
+
+         String usernow=markermap.get(myMarker);
+       Log.d(tag,"clicked");
+if(usernow!=null) {
+    Intent sendtoprofile = new Intent(mapactivity.this, marker2profile.class);
+    sendtoprofile.putExtra("name of the user", usernow);
+    startActivity(sendtoprofile);
+return  true;
+}
+        return false;
+    }
+
 
 //onresume
         @Override
         public void onResume() {
             super.onResume();
+            mMap.setOnMarkerClickListener(this);
             Log.i(tag, "resume");
             db = FirebaseFirestore.getInstance();
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -171,6 +195,7 @@ public class mapactivity extends FragmentActivity implements OnMapReadyCallback 
                                                 myMarker = mMap.addMarker(new MarkerOptions()
                                                         .position(user_location)
                                                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+
                                             }
                                         else if(p.getOnline().equals("0"))
 

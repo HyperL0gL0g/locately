@@ -8,17 +8,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.fire.R;
 import com.example.fire.chatUtils.chatListAdapter;
-import com.example.fire.chatUtils.chatListObj;
 import com.example.fire.chatUtils.chatUserInfoObj;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,9 +35,10 @@ import java.util.List;
 public class something extends Fragment {
 
     String android_id;
-    static List<chatListObj> mdata;
+    static List<chatUserInfoObj> mdata;
     RecyclerView recyclerView;
     chatListAdapter adapter;
+    TextView emptyView;
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -85,7 +85,6 @@ public class something extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_something, container, false);
     }
 
@@ -95,43 +94,43 @@ public class something extends Fragment {
         recyclerView = getActivity().findViewById(R.id.recyclerViewChatList);
 
         recyclerView.setHasFixedSize(true);
+        emptyView = getActivity().findViewById(R.id.empty_view1231);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        android_id = Settings.Secure.getString(getContext().getContentResolver(),Settings.Secure.ANDROID_ID);
+        android_id = FirebaseAuth.getInstance().getUid();
 
         DatabaseReference dref = FirebaseDatabase.getInstance().getReference("chat_userInfo");
-
-        dref.addListenerForSingleValueEvent(new ValueEventListener() {
+        dref.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 mdata.clear();
+                if(dataSnapshot.exists()){
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    chatListObj post = dataSnapshot1.getValue(chatListObj.class);
-                    Log.d("adadaddd", post.getdeviceName() + post.getdeviceID());
-                    if(post.getdeviceID()!=android_id) {
-                        mdata.add(new chatListObj(post.getdeviceID(), post.getdeviceName()));
+                    chatUserInfoObj post = dataSnapshot1.getValue(chatUserInfoObj.class);
+                    Log.d("adadaddd", post.getDeviceName() + post.getDeviceID());
+                    if(!post.getDeviceID().equals(android_id) && post.getAllowed().equals("1")) {
+                        Log.d("data???",post.getusername());
+                        mdata.add(new chatUserInfoObj(post.getDeviceID(), post.getusername()));
                     }
                     adapter = new chatListAdapter(getContext(), mdata);
                     adapter.notifyDataSetChanged();
                     recyclerView.setAdapter(adapter);
                 }
-
-                Log.d("adadadad", String.valueOf(dataSnapshot.getValue()));
+                }
+                if(mdata.isEmpty()){
+                    recyclerView.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
+
+
         });
 
-
-        android_id   = Settings.Secure.getString(getContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-
-        final DatabaseReference chat_userInfoDref = FirebaseDatabase.getInstance().getReference("chat_userInfo");
-
-        chatUserInfoObj dataObject = new chatUserInfoObj(android_id,android.os.Build.MODEL);
-        chat_userInfoDref.child(android_id).setValue(dataObject);
     }
 }

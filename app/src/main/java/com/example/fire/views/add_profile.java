@@ -22,13 +22,15 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.fire.R;
-import com.example.fire.dashboard;
+import com.example.fire.chatUtils.chatUserInfoObj;
 import com.example.fire.data;
 import com.example.fire.drawer.mainDashboard;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class add_profile extends AppCompatActivity {
@@ -73,15 +75,12 @@ public class add_profile extends AppCompatActivity {
                 login_uid= FirebaseAuth.getInstance().getUid();
                 progbar.setVisibility(View.VISIBLE);
                 String online= "1";
-                data obj = new data(user_name, user_addr, user_mobile, latitude, longitude,online);
+                data obj = new data(user_name, user_addr, user_mobile, latitude, longitude,online,login_uid);
                 db.collection("user-profiles").document(login_uid).set(obj).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
                         Log.d(tag, user_name);
-//                        Intent i = new Intent(getApplicationContext(), show.class);
-//                        i.putExtra("name", user_name);
-//                        startActivity(i);
                         startActivity(new Intent(getApplicationContext(), mainDashboard.class));
                         progbar.setVisibility(View.GONE);
                     }
@@ -92,8 +91,9 @@ public class add_profile extends AppCompatActivity {
                         progbar.setVisibility(View.VISIBLE);
                     }
                 });
-
-
+                final DatabaseReference chat_userInfoDref = FirebaseDatabase.getInstance().getReference("chat_userInfo");
+                chatUserInfoObj dataObject = new chatUserInfoObj(login_uid,android.os.Build.MODEL,"0",user_name);
+                chat_userInfoDref.child(login_uid).setValue(dataObject);
             }
         });
 
@@ -164,7 +164,7 @@ public class add_profile extends AppCompatActivity {
 
             } else {
                 Toast.makeText(this, "Location permssion not granted", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getApplicationContext(), dashboard.class));
+                startActivity(new Intent(getApplicationContext(), mainDashboard.class));
                 finish();
             }
         }

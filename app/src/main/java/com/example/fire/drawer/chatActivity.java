@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.fire.R;
 import com.example.fire.chatUtils.messageListAdapter;
 import com.example.fire.chatUtils.messageObj;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +42,7 @@ public class chatActivity extends AppCompatActivity {
     DatabaseReference chat_messagesDref;
 
 
+    boolean checker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,7 @@ public class chatActivity extends AppCompatActivity {
 
 
         final String receiverID = getIntent().getStringExtra("userID");
-        String receiverName = getIntent().getStringExtra("userName");
+//        String receiverName = getIntent().getStringExtra("userName");
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_action_name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -68,7 +70,7 @@ public class chatActivity extends AppCompatActivity {
 
         Log.d("receiverID",receiverID);
 
-        android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),Settings.Secure.ANDROID_ID);
+        android_id = FirebaseAuth.getInstance().getUid();
 
         chatID = android_id+"_"+receiverID;
 
@@ -86,7 +88,6 @@ public class chatActivity extends AppCompatActivity {
                     }
                 }
 
-
                 chat_messagesDref.child(chatID).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -94,7 +95,12 @@ public class chatActivity extends AppCompatActivity {
                         messageObjArrayList.clear();
                         for(DataSnapshot ds: dataSnapshot.getChildren()) {
                             messageObj messageObj = ds.getValue(messageObj.class);
-                            messageObjArrayList.add(new messageObj(messageObj.getMessage(),messageObj.getSenderID(),messageObj.getMessageID(),messageObj.getChatID(),messageObj.getTimestamp()));
+                            if(messageObj.getrequestIDs().length() == 28){
+                                checker=true;
+                            }else{
+                                checker = false;
+                            }
+                            messageObjArrayList.add(new messageObj(messageObj.getMessage(),messageObj.getSenderID(),messageObj.getMessageID(),messageObj.getChatID(),messageObj.getTimestamp(),messageObj.getrequestIDs()));
                             adapter = new messageListAdapter(getApplicationContext(), messageObjArrayList, android_id);
                             adapter.notifyDataSetChanged();
                             recyclerView.setAdapter(adapter);
@@ -124,10 +130,16 @@ public class chatActivity extends AppCompatActivity {
                 if(text.equals("")){
                     Toast.makeText(chatActivity.this, "Cant send blank", Toast.LENGTH_SHORT).show();
                 }else{
-                    String messageID = chat_messagesDref.push().getKey();
-                    messageObj messageObj = new messageObj(text,android_id,messageID,chatID,ts);
-                    chat_messagesDref.child(chatID).child(messageID).setValue(messageObj);
-                    edit.setText("");
+                    if(checker){
+                        Toast.makeText(getApplicationContext(), "Not Authorized", Toast.LENGTH_SHORT).show();
+                        edit.setText("");
+                    }else{
+                        String messageID = chat_messagesDref.push().getKey();
+                        messageObj messageObj = new messageObj(text,android_id,messageID,chatID,ts,"123");
+                        chat_messagesDref.child(chatID).child(messageID).setValue(messageObj);
+                        edit.setText("");
+                    }
+
                 }
             }
         });

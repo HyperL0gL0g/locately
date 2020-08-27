@@ -23,7 +23,7 @@
             android:padding="10dp"
             android:elevation="2dp"
             android:textSize="18dp"
-            android:text="How are you doing? This is a long message that should probably wrap."
+            android:text="Request from."
             />
 
         <TextView

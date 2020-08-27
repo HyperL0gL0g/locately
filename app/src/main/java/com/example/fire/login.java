@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.example.fire.chatUtils.chatUserInfoObj;
 import com.example.fire.drawer.mainDashboard;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -21,6 +22,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class login extends AppCompatActivity {
     private EditText email,password;
@@ -40,14 +43,6 @@ public class login extends AppCompatActivity {
         register=(Button)findViewById(R.id.register);
         mauth=FirebaseAuth.getInstance();
 
-
-
-//        findViewById(R.id.nav).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(getApplicationContext(), test.class));
-//            }
-//        });
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +65,6 @@ public class login extends AppCompatActivity {
                             login_progress.setVisibility(View.GONE);
                             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                             Toast.makeText(getApplicationContext(),"logged in ",Toast.LENGTH_LONG).show();
-                            //startActivity(new Intent(getApplicationContext(),dashboard.class));
                             startActivity(new Intent(getApplicationContext(), mainDashboard.class));
                             finish();
                         }

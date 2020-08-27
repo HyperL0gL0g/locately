@@ -18,9 +18,9 @@ import java.util.List;
 public class chatListAdapter extends RecyclerView.Adapter<chatListAdapter.viewHolder> {
 
     Context context;
-    List<chatListObj> mdata;
-
-    public chatListAdapter(Context context, List<chatListObj> mdata) {
+//    List<chatListObj> mdata;
+    List<chatUserInfoObj> mdata;
+    public chatListAdapter(Context context, List<chatUserInfoObj> mdata) {
         this.context = context;
         this.mdata = mdata;
     }
@@ -36,8 +36,9 @@ public class chatListAdapter extends RecyclerView.Adapter<chatListAdapter.viewHo
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        chatListObj chatListObj  = mdata.get(position);
-        holder.tv.setText(chatListObj.getdeviceName());
+        //chatListObj chatListObj  = mdata.get(position);
+        chatUserInfoObj ch = mdata.get(position);
+        holder.tv.setText(ch.getusername());
         //
     }
 
@@ -48,9 +49,8 @@ public class chatListAdapter extends RecyclerView.Adapter<chatListAdapter.viewHo
             @Override
             public void onClick(View view) {
                 Intent a = new Intent(context, chatActivity.class);
-                a.putExtra("userName",mdata.get(position).getdeviceName());
                 a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                a.putExtra("userID",mdata.get(position).getdeviceID());
+                a.putExtra("userID",mdata.get(position).getDeviceID());
                 context.startActivity(a);
             }
         });

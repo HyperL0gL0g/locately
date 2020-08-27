@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="20dp"
+        android:clipToPadding="false"
+        >
+
+        <TextView
+            android:id="@+id/messagebody"
+            android:layout_width="236dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_rectangle_green"
+            android:elevation="2dp"
+            android:padding="10dp"
+            android:text="How are you doing? "
+            android:textSize="18dp" />
+
+        <ImageButton
+            android:id="@+id/tick"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="32dp"
+            android:layout_toLeftOf="@+id/cross"
+            android:src="@drawable/tick" />
+
+        <ImageButton
+            android:layout_alignParentRight="true"
+            android:id="@+id/cross"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/close"
+            />
+    </RelativeLayout>
+</LinearLayout>

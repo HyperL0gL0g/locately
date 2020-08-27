@@ -30,8 +30,6 @@ public class jump2profile extends AppCompatActivity {
         name_of_user=(TextView)findViewById(R.id.name_of_user);
         online_status=(TextView)findViewById(R.id.online_status);
         user_mobile_number=(TextView)findViewById(R.id.user_mobile_number);
-        send=(Button)findViewById(R.id.send);
-        chat=(Button)findViewById(R.id.chat);
         db=FirebaseFirestore.getInstance();
 
         final String uid = getIntent().getStringExtra("uid_data");
@@ -48,21 +46,16 @@ public class jump2profile extends AppCompatActivity {
             }
         });
 
-        chat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent a = new Intent(getApplicationContext(), chatActivity.class);
-//                a.putExtra("userName",mdata.get(position).getdeviceName());
-                a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                a.putExtra("userID",uid);
-                startActivity(a);
-            }
-        });
-
-
-
-
-
+//        chat.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent a = new Intent(getApplicationContext(), chatActivity.class);
+////                a.putExtra("userName",mdata.get(position).getdeviceName());
+//                a.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                a.putExtra("userID",uid);
+//                startActivity(a);
+//            }
+//        });
 
     }
 }

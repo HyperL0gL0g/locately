@@ -16,3 +16,35 @@
   ---
 
 
+
+## :dart: Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+ ---
+
+##  :dart: Prerequisites
+
+**locately** requires  [**Android Studio**](https://developer.android.com/studio) and an Android device (with fingerprint scanner) running Android Version 9.0+ .
+
+ ---
+
+## :dart: Getting the project.
+
+```sh
+$ git clone https://github.com/logicinfinite/project01.git
+or 
+Download and extract the Zip-File
+```
+ ---
+
+## :dart:  Contributors
+
+-   **Niraj Singh**  :point_right: [Neeraj Singh](https://github.com/karma9874) : Android (chat)
+-   **Abhinav Ghosh**  :point_right: [Abhinava Ghosh](https://github.com/logicinfinite) : Android(Geolocation)
+
+  ---
+
+ ## [NOTE]:
+
+This Project was Submitted  to Devpost Facebook Hackathon (Messaging category) :heart:
+

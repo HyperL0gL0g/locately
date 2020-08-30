@@ -24,8 +24,19 @@ These instructions will get you a copy of the project up and running on your loc
 
 ##  :dart: Prerequisites
 
-**locately** requires  [**Android Studio**](https://developer.android.com/studio) and an Android device (with fingerprint scanner) running Android Version 9.0+ .
+**locately** requires  [**Android Studio**](https://developer.android.com/studio).
 
+ * Latest Android Studio Installed
+ * An Android Device
+ 
+ **Building the code is as simple as:**
+
+ * Launch Android Studio
+ * Open the project from the folder where you have downloaded the code using menu File -> Open
+ * Build using menu Build -> Rebuild Project
+ * It may take a while to build the project for the first time.
+ * Once the build is over, run on the device using menu Run -> Run (app)
+ 
  ---
 
 ## :dart: Getting the project.

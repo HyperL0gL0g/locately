@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">fire</string>
+    <string name="app_name">locately</string>
     <string name="title_activity_mapactivity">Map</string>
     <string name="google_maps_key">enter key</string>
     <string name="title_activity_mappedu_">Map</string>

@@ -11,14 +11,14 @@
 
  ---
 
-# Aim:
+#  :thought_balloon: Aim:
 
 ## During the infamous COVID-19 pandemic , people all around the world are isolated in their home :house: . So , most of us are separated from our friends and family :weary: . So all we have is the neighbourhood and the people near us. This might be the best time for us to mingle with the people  around us. With **locately** you can search for people around you and chat with them and get to know them. :tada:
 
 
   ---
 
-# Screen-shots:
+#  :camera: Screen-shots:
 
 &nbsp; &nbsp;  <img src="https://github.com/logicinfinite/project01/blob/master/new%20user.jpeg" width="200" height="400" />&nbsp; &nbsp; <img src="https://github.com/logicinfinite/project01/blob/master/add%20profile.jpeg" width="200" height="400" />&nbsp; &nbsp; <img src="https://github.com/logicinfinite/project01/blob/master/map%20(2).jpeg" width="200" height="400" />&nbsp; &nbsp;   <img src="https://github.com/logicinfinite/project01/blob/master/box.jpeg" width="200" height="400" /> 
 

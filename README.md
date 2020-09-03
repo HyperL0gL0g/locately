@@ -1,4 +1,7 @@
-# locately
+![Authenza](https://github.com/logicinfinite/authenza/blob/master/images/authenza.png?raw=true)
+<br><br>
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)   <a href='https://github.com/logicinfinite' target='_blank'><img src='https://img.shields.io/github/followers/logicinfinite.svg?label=Folow&style=social'></a>
+</a><br><br>
 
   ---
 

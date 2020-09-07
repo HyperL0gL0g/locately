@@ -27,7 +27,7 @@
 
 #  :video_camera: Demo : 
 
- [Click here for demo video  -  Map](https://youtu.be/obUmcmlcXY0)
+ [Click here for demo video  -  Map](https://youtu.be/obUmcmlcXY0)&nbsp;<br>
  [Click here for demo video  -  Chat](https://youtu.be/4Kx_USzvaAc)
  
   ---

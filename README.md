@@ -20,13 +20,15 @@
 
 #  :camera: Screen-shots:
 
-&nbsp;<img src="https://github.com/logicinfinite/project01/blob/master/new%20user.jpeg" width="200" height="400" />&nbsp; &nbsp; <img src="https://github.com/logicinfinite/project01/blob/master/add%20profile.jpeg" width="200" height="400" />&nbsp; &nbsp; <img src="https://github.com/logicinfinite/project01/blob/master/map%20(2).jpeg" width="200" height="400" />&nbsp;<img src="https://github.com/logicinfinite/project01/blob/master/box.jpeg" width="200" height="400" /> 
+&nbsp;<img src="https://github.com/logicinfinite/project01/blob/master/new%20user.jpeg" width="200" height="400" />&nbsp; &nbsp; <img src="https://github.com/logicinfinite/project01/blob/master/add%20profile.jpeg" width="200" height="400" />&nbsp; &nbsp; <img src="https://github.com/logicinfinite/project01/blob/master/map%20(2).jpeg" width="200" height="400" />&nbsp;<img src="https://github.com/logicinfinite/project01/blob/master/box.jpeg" width="200" height="400" /> &nbsp;
+<img src="https://github.com/logicinfinite/locately/blob/master/chat-img.jpeg" width="200" height="400" />
 
  ---
 
 #  :video_camera: Demo : 
 
- [Click here for demo video ](https://drive.google.com/file/d/19TydlwnM_5XWYPO8oLdUjhaXcmeDn-Jd/view?usp=sharing)
+ [Click here for demo video  -  Map](https://youtu.be/obUmcmlcXY0)
+ [Click here for demo video  -  Chat](https://youtu.be/4Kx_USzvaAc)
  
   ---
 
@@ -89,7 +91,7 @@ This project is mantained by:
 
 
 
-## Contributing
+## Contributing:
 
 1. Fork it
 2. Create your feature branch (git checkout -b my-new-feature)
@@ -100,5 +102,5 @@ This project is mantained by:
 
  ## [NOTE]:
 
-This Project was Submitted  to Devpost Facebook Hackathon (Messaging category) :heart:
+ **This Project was Submitted  to Devpost Facebook Hackathon (Messaging category) :heart:
 

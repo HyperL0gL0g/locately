@@ -34,6 +34,7 @@ public class login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.start_page);
         email=(EditText) findViewById(R.id.email);
         login=(Button)findViewById(R.id.login);

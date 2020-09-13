@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/backpng"
+    android:theme="@style/Theme.AppCompat.NoActionBar"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <EditText
@@ -40,6 +41,7 @@
         android:id="@+id/login"
         android:layout_width="146dp"
         android:layout_height="60dp"
+        android:background="#C8C7C7"
         android:text="login"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,7 +55,9 @@
         android:id="@+id/register"
         android:layout_width="109dp"
         android:layout_height="51dp"
+        android:background="#C8C7C7"
         android:text="register"
+        android:textColor="#000000"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +70,9 @@
         android:id="@+id/forgot_password"
         android:layout_width="120dp"
         android:layout_height="53dp"
+        android:background="#C8C7C7"
         android:text="forgot password"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.621"

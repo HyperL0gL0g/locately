@@ -34,12 +34,14 @@
 
 # Design Diagrams:
 
-# Map :
+#  :clipboard: Map :
 
  &nbsp;<img src="https://github.com/logicinfinite/locately/blob/master/Chat%20Architecture.png"/> &nbsp;&nbsp;
  &nbsp;
+  
+   --- 
  
-# Chat :
+#  :clipboard: Chat :
  &nbsp;
  &nbsp;
 

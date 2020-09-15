@@ -32,7 +32,7 @@
  
   ---
 
-# Design Diagrams:
+#  :triangular_ruler: Design Diagrams:
 
 #  :clipboard: Map :
 

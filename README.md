@@ -32,6 +32,20 @@
  
   ---
 
+# Design Diagrams:
+
+# Map :
+
+ &nbsp;<img src="https://github.com/logicinfinite/locately/blob/master/Chat%20Architecture.png"/> &nbsp;&nbsp;
+ &nbsp;
+ 
+# Chat :
+ &nbsp;
+ &nbsp;
+
+  &nbsp; <img src="https://github.com/logicinfinite/locately/blob/master/arch.png" />
+  ---
+
 
 ## :dart: Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.

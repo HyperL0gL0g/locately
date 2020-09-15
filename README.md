@@ -33,21 +33,24 @@
   ---
 
 #  :triangular_ruler: Design Diagrams:
+&nbsp;
+&nbsp;
 
-#  :clipboard: Map :
+#  :clipboard: Chat :
 
  &nbsp;<img src="https://github.com/logicinfinite/locately/blob/master/Chat%20Architecture.png"/> &nbsp;&nbsp;
  &nbsp;
   
    --- 
  
-#  :clipboard: Chat :
+#  :clipboard: Map :
  &nbsp;
  &nbsp;
 
   &nbsp; <img src="https://github.com/logicinfinite/locately/blob/master/arch.png" />
   ---
-
+&nbsp;
+&nbsp;
 
 ## :dart: Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.

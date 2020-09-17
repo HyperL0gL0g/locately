@@ -19,8 +19,9 @@
   ---
 
 #  :camera: Screen-shots:
-
-&nbsp;<img src="https://github.com/logicinfinite/project01/blob/master/new%20user.jpeg" width="200" height="400" />&nbsp; &nbsp; <img src="https://github.com/logicinfinite/project01/blob/master/add%20profile.jpeg" width="200" height="400" />&nbsp; &nbsp; <img src="https://github.com/logicinfinite/project01/blob/master/map%20(2).jpeg" width="200" height="400" />&nbsp;<img src="https://github.com/logicinfinite/project01/blob/master/box.jpeg" width="200" height="400" /> &nbsp;
+&nbsp;<img src="https://github.com/logicinfinite/locately/blob/master/locately-register.jpeg" width="200" height="400" />&nbsp;
+&nbsp;<img src="https://github.com/logicinfinite/locately/blob/master/locately-login.jpeg" width="200" height="400" />&nbsp;
+&nbsp;<img src="https://github.com/logicinfinite/project01/blob/master/new%20user.jpeg" width="200" height="400" />&nbsp; &nbsp; <img src="https://github.com/logicinfinite/project01/blob/master/map%20(2).jpeg" width="200" height="400" />&nbsp;<img src="https://github.com/logicinfinite/project01/blob/master/box.jpeg" width="200" height="400" /> &nbsp;
 <img src="https://github.com/logicinfinite/locately/blob/master/chat-img.jpeg" width="200" height="400" />
 
  ---
